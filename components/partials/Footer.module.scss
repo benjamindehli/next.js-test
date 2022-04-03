@@ -1,0 +1,50 @@
+@import "../../styles/abstracts/all";
+
+.footer {
+    background-color: #eee;
+
+    .contentSection {
+        max-width: 1200px;
+        padding: 16px;
+        margin: auto;
+        flex: 1;
+
+        .map {
+            margin: 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .grid {
+            @media (min-width: $screen-md) {
+                display: flex;
+            }
+
+            :local(.textSection) {
+                @media (min-width: $screen-md) {
+                    flex: 1;
+                }
+            }
+
+            .mapSection {
+                @media (min-width: $screen-md) {
+                    flex: 2;
+                }
+            }
+        }
+    }
+
+    .addressContent {
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin: 6px 0;
+            }
+        }
+    }
+}
