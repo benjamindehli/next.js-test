@@ -1,0 +1,12 @@
+.layout {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+
+    .layoutBody {
+        overflow-y: scroll;
+        width: 100%;
+    }
+}
