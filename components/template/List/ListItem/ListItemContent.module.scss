@@ -1,0 +1,14 @@
+@import "../../../../styles/abstracts/all";
+
+.listItemContent {
+  @include calc('width', '100% - 55px');
+  display: inline-block;
+  padding: 6px;
+  @media (min-width: $screen-sm) {
+    padding: 16px;
+    width: 100%;
+  }
+  &.fullscreen {
+    width: 100%;
+  }
+}

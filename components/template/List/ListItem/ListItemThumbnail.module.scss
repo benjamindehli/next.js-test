@@ -1,0 +1,53 @@
+@import "../../../../styles/abstracts/all";
+
+.listItemThumbnail {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  margin: 9px 6px;
+
+  picture {
+    display: block;
+    line-height: 0;
+
+    img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 1px solid #eee;
+    }
+  }
+
+  &:not(.compact) {
+    @media (min-width: $screen-sm) {
+      flex: none;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      picture {
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 0;
+          border: none;
+        }
+      }
+    }
+  }
+
+  &.fullscreen {
+    width: 100%;
+    height: auto;
+    margin: 0;
+
+    picture {
+      img {
+        border-radius: 0;
+        border: none;
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
