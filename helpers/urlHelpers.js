@@ -39,3 +39,16 @@ export const convertToUrlFriendlyString = (string) => {
 export const getLocaleSlug = (locale, defaultLocale) => {
     return locale === defaultLocale ? "" : `${locale}/`;
 };
+
+export const getSlugForNeighbourItems = (selectedItem, availableItems, locale) => {
+    let slugForNeighbourItems = null;
+    availableItems.forEach((item, index) => {
+        if (item._id === selectedItem._id) {
+            slugForNeighbourItems = {
+                previousItemSlug: index > 0 ? availableItems[index - 1].slug[locale] : null,
+                nextItemSlug: index < availableItems.length - 1 ? availableItems[index + 1].slug[locale] : null
+            };
+        }
+    });
+    return slugForNeighbourItems;
+};

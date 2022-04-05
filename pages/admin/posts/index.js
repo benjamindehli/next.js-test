@@ -12,7 +12,7 @@ import { dbConnectionString } from "config";
 import PostForm from "components/admin/postForm";
 
 // Helpers
-import { convertToUrlFriendlyString } from "helpers/urlFormatter";
+import { convertToUrlFriendlyString } from "helpers/urlHelpers";
 import { getAllInCollection } from "helpers/databaseHelpers";
 
 // Assets

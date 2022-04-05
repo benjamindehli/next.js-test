@@ -12,7 +12,7 @@ import ListItemActionButtons from "components/template/List/ListItem/ListItemAct
 import Button from "components/template/Button";
 
 // Helpers
-import { getLocaleSlug } from "helpers/urlFormatter";
+import { getLocaleSlug } from "helpers/urlHelpers";
 import { getPrettyDate } from "helpers/dateFormatter";
 
 const PostItem = (props) => {

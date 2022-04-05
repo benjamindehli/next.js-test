@@ -8,7 +8,7 @@ import { dbConnectionString } from "config";
 import posts from "data/posts/data/all.json";
 
 // Helpers
-import { convertToUrlFriendlyString } from "helpers/urlFormatter";
+import { convertToUrlFriendlyString } from "helpers/urlHelpers";
 
 async function handler(req, res) {
   if (req.method === "POST") {

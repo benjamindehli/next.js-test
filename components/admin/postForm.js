@@ -2,7 +2,7 @@
 import { useRef, Fragment } from "react";
 
 // Helpers
-import { convertToUrlFriendlyString } from "helpers/urlFormatter";
+import { convertToUrlFriendlyString } from "helpers/urlHelpers";
 import {
   getGeneratedIdByDate,
   getOrderNumberString,
