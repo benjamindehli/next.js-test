@@ -22,12 +22,14 @@ const PostItem = (props) => {
 
     const postDate = new Date(props.post.timestamp);
 
+    const languageSlug = getLocaleSlug(locale, defaultLocale);
+
+
     const link = {
-        to: `/${locale}/posts/${props.post.slug[locale]}/`,
+        to: `/${languageSlug}posts/${props.post.slug[locale]}/`,
         title: props.post.title[locale]
     };
 
-    const languageSlug = getLocaleSlug(locale, defaultLocale);
 
     const renderContentLink = () => {
         const contentLink = props.post.link;
@@ -68,7 +70,6 @@ const PostItem = (props) => {
                 </ListItemContentBody>
                 {props.post.link && props.fullscreen ? <ListItemActionButtons fullscreen={props.fullscreen}>{renderContentLink()}</ListItemActionButtons> : ""}
             </ListItemContent>
-            <h2> {props.post.title[locale]}</h2>
         </Fragment>
     );
 };
