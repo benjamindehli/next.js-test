@@ -8,6 +8,7 @@ const nextConfig = withPWA({
         dest: "public",
         runtimeCaching
     },
+    trailingSlash: true,
     reactStrictMode: true,
     i18n: {
         locales: ["en", "no"],
