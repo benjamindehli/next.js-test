@@ -1,4 +1,6 @@
+import { useAmp } from "next/amp";
 import Layout from "components/Layout";
+import AmpLayout from "components/AmpLayout";
 import "../styles/globals.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -8,10 +10,18 @@ import { faBullhorn, faChevronDown, faChevronLeft, faChevronRight, faFilm, faFil
 library.add(faBullhorn, faChevronDown, faChevronLeft, faChevronRight, faFacebookF, faFilm, faFilter, faGripHorizontal, faGuitar, faInstagram, faLanguage, faListUl, faMusic, faPhotoVideo, faRss, faSearch, faShoppingCart, faSlidersH, faTumblr, faTwitter, faVimeoV, faYoutube);
 
 function MyApp({ Component, pageProps }) {
+    const isAmp = useAmp();
+
     return (
+            {isAmp ? (
+                <AmpLayout>
+                    <Component {...pageProps} />
+                </AmpLayout>
+            ) : (
         <Layout>
             <Component {...pageProps} />
         </Layout>
+            )}
     );
 }
 
