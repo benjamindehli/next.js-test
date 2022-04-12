@@ -13,7 +13,7 @@ const ListItemThumbnail = ({ fullscreen, compact, link, children }) => {
   );
 
   return link && !fullscreen
-    ? <Link href={link.to} title={link.title} tabIndex="-1">{childElements}</Link>
+    ? <Link href={link.to} title={link.title} tabIndex="-1"><a>{childElements}</a></Link>
     : childElements;
 
 };

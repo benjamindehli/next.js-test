@@ -8,7 +8,7 @@ const ListItemContentHeader = ({ fullscreen, link, children }) => {
 
   const renderContent = (link, children) => {
     return link && !fullscreen
-      ? (<Link href={link.to} title={link.title} data-tabable={true}>{children}</Link>)
+      ? (<Link href={link.to} title={link.title} data-tabable={true}><a>{children}</a></Link>)
       : children
   }
 
