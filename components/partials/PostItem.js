@@ -24,22 +24,24 @@ const PostItem = (props) => {
 
     const languageSlug = getLocaleSlug(locale, defaultLocale);
 
-
     const link = {
-        to: `/${languageSlug}posts/${props.post.slug[locale]}/`,
-        title: props.post.title[locale]
+        to: `/${languageSlug}posts/${props.post.slug?.[locale]}/`,
+        title: props.post.title?.[locale]
     };
-
 
     const renderContentLink = () => {
         const contentLink = props.post.link;
         return contentLink.internal ? (
-            <Button href={`/${languageSlug}${contentLink.url[locale]}`} title={contentLink.text[locale]} buttontype="minimal">
-                {contentLink.text[locale]}
+            <Button
+                href={`/${languageSlug}${contentLink.url?.[locale]}`}
+                title={contentLink.text?.[locale]}
+                buttontype="minimal"
+            >
+                {contentLink.text?.[locale]}
             </Button>
         ) : (
-            <Button href={contentLink.url} target="_blank" rel="noopener noreferrer" title={contentLink.text[locale]}>
-                <a>{contentLink.text[locale]}</a>
+            <Button href={contentLink.url} target="_blank" rel="noopener noreferrer" title={contentLink.text?.[locale]}>
+                <a>{contentLink.text?.[locale]}</a>
             </Button>
         );
     };
@@ -47,28 +49,43 @@ const PostItem = (props) => {
     const renderPostThumbnail = () => {
         const filename = props.post.thumbnailFilename + "_540.jpg";
         const imageProps = {
-          priority: !!props.fulscreen,
-          sizes: !!props.fullscreen ? "540px" : "(max-width: 599px) 55px, 350px"
-        }
-        return <Image {...imageProps} width="540" height="400" quality="60" src={`/images/posts/${filename}`} alt={props.post.thumbnailDescription} />;
+            priority: !!props.fulscreen,
+            sizes: !!props.fullscreen ? "540px" : "(max-width: 599px) 55px, 350px"
+        };
+        return (
+            <ListItemThumbnail fullscreen={props.fullscreen} link={link}>
+                <Image
+                    {...imageProps}
+                    width={props.fullscreen ? "540" : "350"}
+                    height={props.fullscreen ? "400" : "260"}
+                    quality="60"
+                    objectFit="cover"
+                    layout="fill"
+                    src={`/images/posts/${filename}`}
+                    alt={props.post.thumbnailDescription}
+                />
+            </ListItemThumbnail>
+        );
     };
 
     return (
         <Fragment>
-            <ListItemThumbnail fullscreen={props.fullscreen} link={link}>
-                {renderPostThumbnail()}
-            </ListItemThumbnail>
+            {renderPostThumbnail()}
             <ListItemContent fullscreen={props.fullscreen}>
-                <ListItemContentHeader fullscreen={props.fullscreen} link={props.link}>
-                    <h2>{props.post.title[locale]}</h2>
+                <ListItemContentHeader fullscreen={props.fullscreen} link={link}>
+                    <h2>{props.post.title?.[locale]}</h2>
                     <time dateTime={postDate.toISOString()}>{getPrettyDate(postDate, locale)}</time>
                 </ListItemContentHeader>
                 <ListItemContentBody fullscreen={props.fullscreen}>
-                    {props.post.content[locale].split("\n").map((paragraph, key) => {
+                    {props.post.content?.[locale]?.split("\n")?.map((paragraph, key) => {
                         return <p key={key}>{paragraph}</p>;
                     })}
                 </ListItemContentBody>
-                {props.post.link && props.fullscreen ? <ListItemActionButtons fullscreen={props.fullscreen}>{renderContentLink()}</ListItemActionButtons> : ""}
+                {props.post.link && props.fullscreen ? (
+                    <ListItemActionButtons fullscreen={props.fullscreen}>{renderContentLink()}</ListItemActionButtons>
+                ) : (
+                    ""
+                )}
             </ListItemContent>
         </Fragment>
     );
