@@ -40,13 +40,17 @@ export const getLocaleSlug = (locale, defaultLocale) => {
     return locale === defaultLocale ? "" : `${locale}/`;
 };
 
+const getItemSlug = (item, locale) => {
+    return locale ? item?.slug?.[locale] : item?.slug;
+}
+
 export const getSlugForNeighbourItems = (selectedItem, availableItems, locale) => {
     let slugForNeighbourItems = null;
     availableItems.forEach((item, index) => {
         if (item._id === selectedItem._id) {
             slugForNeighbourItems = {
-                previousItemSlug: index > 0 ? availableItems[index - 1].slug[locale] : null,
-                nextItemSlug: index < availableItems.length - 1 ? availableItems[index + 1].slug[locale] : null
+                previousItemSlug: index > 0 ? getItemSlug(availableItems[index - 1]) : null,
+                nextItemSlug: index < availableItems.length - 1 ? getItemSlug(availableItems[index + 1]) : null
             };
         }
     });
