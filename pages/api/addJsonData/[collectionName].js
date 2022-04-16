@@ -4,24 +4,21 @@ import { MongoClient } from "mongodb";
 // Config
 import { dbConnectionString } from "config";
 
-// Models
-import Post from "models/Post";
-
-
 async function handler(req, res) {
     if (req.method === "POST") {
-        const posts = req.body;
+        const collectionName = req.query.collectionName;
+        const documents = req.body;
 
         const client = await MongoClient.connect(dbConnectionString);
         const db = client.db();
 
-        const postsCollection = db.collection("posts");
+        const collection = db.collection(collectionName);
 
-        await postsCollection.insertMany(posts);
+        await collection.insertMany(documents);
 
         client.close();
 
-        res.status(201).json("JSON data for posts added");
+        res.status(201).json(`JSON data for ${collectionName} added`);
     }
 }
 
