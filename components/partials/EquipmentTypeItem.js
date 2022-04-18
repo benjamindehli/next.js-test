@@ -38,8 +38,6 @@ const EquipmentTypeItem = (props) => {
                     width="350"
                     height="260"
                     quality="60"
-                    objectFit="cover"
-                    layout="fill"
                     src={`/images/equipment/${filename}`}
                     alt={props.equipmentType.thumbnailDescription}
                 />

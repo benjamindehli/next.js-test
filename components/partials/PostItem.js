@@ -59,8 +59,6 @@ const PostItem = (props) => {
                     width={props.fullscreen ? "540" : "350"}
                     height={props.fullscreen ? "400" : "260"}
                     quality="60"
-                    objectFit="cover"
-                    layout="fill"
                     src={`/images/posts/${filename}`}
                     alt={props.post.thumbnailDescription}
                 />

@@ -31,16 +31,22 @@
   }
 
   &.fullscreen {
-    width: 100%;
-    height: auto;
     margin: 0;
-
+    display: block;
     picture {
-      img {
-        border-radius: 0;
-        border: none;
-        width: 100%;
-        height: auto;
+      height: auto;
+      width: 100%;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  &:not(.fullscreen) {
+    picture {
+      > span {
+        @media (max-width: $screen-xs-max) {
+          height: 55px !important; // Hack for squared images
+        }
       }
     }
   }
