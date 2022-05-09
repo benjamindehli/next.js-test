@@ -2,7 +2,6 @@
 import { Fragment } from "react";
 import { MongoClient } from "mongodb";
 import { useRouter } from "next/router";
-import { useAmp } from "next/amp";
 
 // Config
 import { dbConnectionString } from "config";
@@ -23,11 +22,7 @@ import { getLocaleSlug, getSlugForNeighbourItems } from "helpers/urlHelpers";
 import getPostJsonLd from "json-ld/post";
 import Head from "next/head";
 
-export const config = { amp: "hybrid" };
-
 const Post = (props) => {
-    const isAmp = useAmp();
-
     const router = useRouter();
     const { locale } = router;
 
@@ -42,22 +37,16 @@ const Post = (props) => {
     return (
         <Fragment>
             <Head>{getPostJsonLd(props.post, locale)}</Head>
-            {isAmp ? (
-                <AmpPostItem post={props.post} fullscreen />
-            ) : (
-                <Fragment>
-                    <Modal
-                        onClickOutside={handleClickOutside}
-                        maxWidth="540px"
+            <Modal
+                onClickOutside={handleClickOutside}
+                maxWidth="540px"
                         arrowLeftLink={arrowLeftLink}
                         arrowRightLink={arrowRightLink}
                         selectedLanguageKey={locale}
                     >
                         <PostItem post={props.post} fullscreen />
-                    </Modal>
-                    <PostList posts={props.posts} blur />
-                </Fragment>
-            )}
+            </Modal>
+            <PostList posts={props.posts} blur />
         </Fragment>
     );
 };

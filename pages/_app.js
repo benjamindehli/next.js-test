@@ -1,13 +1,11 @@
 // Dependencies
 import Head from "next/head";
-import { useAmp } from "next/amp";
 import { Fragment } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // Components
 import Layout from "components/Layout";
-import AmpLayout from "components/AmpLayout";
 
 // Stylesheets
 import "../styles/globals.scss";
@@ -61,7 +59,6 @@ library.add(
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }) {
-    const isAmp = useAmp();
 
     return (
         <Fragment>
@@ -82,15 +79,9 @@ function MyApp({ Component, pageProps }) {
 
                 <meta name="robots" content="max-image-preview:large" />
             </Head>
-            {isAmp ? (
-                <AmpLayout>
-                    <Component {...pageProps} />
-                </AmpLayout>
-            ) : (
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            )}
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
         </Fragment>
     );
 }
