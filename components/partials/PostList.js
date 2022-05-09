@@ -9,7 +9,7 @@ const PostList = (props) => {
         return props.posts?.length
             ? props.posts.map((post) => {
                   return (
-                      <ListItem key={post.id}>
+                      <ListItem key={post._id}>
                           <PostItem post={post} />
                       </ListItem>
                   );
