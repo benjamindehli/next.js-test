@@ -10,9 +10,7 @@ import { dbConnectionString } from "config";
 import PostItem from "components/partials/PostItem";
 import PostList from "components/partials/PostList";
 import Modal from "components/template/Modal";
-
-// Amp Components
-import AmpPostItem from "components/amp/AmpPostItem";
+import Container from "components/template/Container";
 
 // Helpers
 import { getOneInCollection, getAllInCollection } from "helpers/databaseHelpers";
@@ -26,6 +24,21 @@ const Post = (props) => {
     const router = useRouter();
     const { locale } = router;
 
+    const metadata = {
+        title: {
+            en: `${props.post.title.en} - Posts | Dehli Musikk`,
+            no: `${props.post.title.no} - Innlegg | Dehli Musikk`
+        },
+        heading: {
+            en: props.post.title.en,
+            no: props.post.title.no
+        },
+        description: {
+            en: props.post.content.en,
+            no: props.post.content.no
+        }
+    };
+
     const handleClickOutside = () => {
         router.push(`/${props.localeSlug}posts/`);
     };
@@ -38,17 +51,50 @@ const Post = (props) => {
 
     return (
         <Fragment>
-            <Head>{getPostJsonLd(props.post, locale)}</Head>
+            <Head>
+                <title>{metadata.title[locale]}</title>
+                <meta name="description" content={metadata.description[locale]} />
+                <link
+                    rel="canonical"
+                    href={`https://www.dehlimusikk.no/${props.localeSlug}posts/${props.post.slug[locale]}`}
+                />
+                <link rel="alternate" href={`https://www.dehlimusikk.no/posts/${props.post.slug.no}`} hreflang="no" />
+                <link
+                    rel="alternate"
+                    href={`https://www.dehlimusikk.no/en/posts/${props.post.slug.en}`}
+                    hreflang="en"
+                />
+                <link
+                    rel="alternate"
+                    href={`https://www.dehlimusikk.no/posts/${props.post.slug.no}`}
+                    hreflang="x-default"
+                />
+                <meta property="og:title" content={metadata.heading[locale]} />
+                <meta
+                    property="og:url"
+                    content={`https://www.dehlimusikk.no/${props.localeSlug}posts/${props.post.slug[locale]}`}
+                />
+                <meta property="og:description" content={metadata.description[locale]} />
+                <meta property="og:locale" content={locale === "en" ? "en_US" : "no_NO"} />
+                <meta property="og:locale:alternate" content={locale === "en" ? "nb_NO" : "en_US"} />
+                <meta property="twitter:title" content={metadata.heading[locale]} />
+                <meta property="twitter:description" content={metadata.description[locale]} />
+                {getPostJsonLd(props.post, locale)}
+            </Head>
             <Modal
                 onClickOutside={handleClickOutside}
                 maxWidth="540px"
-                        arrowLeftLink={arrowLeftLink}
-                        arrowRightLink={arrowRightLink}
-                        selectedLanguageKey={locale}
-                    >
-                        <PostItem post={props.post} fullscreen />
+                arrowLeftLink={arrowLeftLink}
+                arrowRightLink={arrowRightLink}
+                selectedLanguageKey={locale}
+            >
+                <PostItem post={props.post} fullscreen />
             </Modal>
-            <PostList posts={props.posts} blur />
+            <Container blur>
+                <h1>{metadata.heading[locale]}</h1>
+                <p>{locale === "en" ? "Updates from Dehli Musikk" : "Oppdateringer fra Dehli Musikk"}</p>
+                <PostList posts={props.posts} />
+            </Container>
         </Fragment>
     );
 };

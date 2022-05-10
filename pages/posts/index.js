@@ -9,6 +9,7 @@ import { dbConnectionString } from "config";
 
 // Components
 import PostList from "components/partials/PostList";
+import Container from "components/template/Container";
 
 // Helpers
 import { getAllInCollection } from "helpers/databaseHelpers";
@@ -54,8 +55,11 @@ const Posts = (props) => {
                 <meta property="twitter:description" content={metadata.description[locale]} />
                 {getPostsJsonLd(props.posts, locale)}
             </Head>
-            <h1>{metadata.heading[locale]}</h1>
-            <PostList posts={props.posts} />
+            <Container>
+                <h1>{metadata.heading[locale]}</h1>
+                <p>{locale === "en" ? "Updates from Dehli Musikk" : "Oppdateringer fra Dehli Musikk"}</p>
+                <PostList posts={props.posts} />
+            </Container>
         </Fragment>
     );
 };
