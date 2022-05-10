@@ -1,5 +1,4 @@
 // Components
-import Container from "components/template/Container";
 import List from "components/template/List";
 import ListItem from "components/template/List/ListItem";
 import PostItem from "./PostItem";
@@ -14,14 +13,9 @@ const PostList = (props) => {
                       </ListItem>
                   );
               })
-            : "";
+            : null;
     };
-
-    return (
-        <Container blur={props.blur}>
-            <List>{renderPosts()}</List>
-        </Container>
-    );
+    return <List>{renderPosts()}</List>;
 };
 
 export default PostList;

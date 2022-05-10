@@ -15,6 +15,9 @@ import Button from "components/template/Button";
 import { getLocaleSlug } from "helpers/urlHelpers";
 import { getPrettyDate } from "helpers/dateFormatter";
 
+// Utils
+import { renderThumbnail } from "utils/imageKit";
+
 const PostItem = (props) => {
     const router = useRouter();
 
@@ -47,21 +50,10 @@ const PostItem = (props) => {
     };
 
     const renderPostThumbnail = () => {
-        const filename = props.post.thumbnailFilename + "_540.jpg";
-        const imageProps = {
-            priority: !!props.fulscreen,
-            sizes: !!props.fullscreen ? "540px" : "(max-width: 599px) 55px, 350px"
-        };
+        const renderSize = !!props.fullscreen ? "540px" : "(max-width: 599px) 55px, 350px";
         return (
             <ListItemThumbnail fullscreen={props.fullscreen} link={link}>
-                <Image
-                    {...imageProps}
-                    width={props.fullscreen ? "540" : "350"}
-                    height={props.fullscreen ? "400" : "260"}
-                    quality="60"
-                    src={`/images/posts/${filename}`}
-                    alt={props.post.thumbnailDescription}
-                />
+                {renderThumbnail(props.post.postImageKitPath, 'post', props.post.thumbnailDescription, renderSize)}
             </ListItemThumbnail>
         );
     };
