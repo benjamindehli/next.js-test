@@ -29,10 +29,12 @@ const Post = (props) => {
     const handleClickOutside = () => {
         router.push(`/${props.localeSlug}posts/`);
     };
-    const arrowLeftLink = props.previousPostSlug?.length
-        ? `/${props.localeSlug}posts/${props.previousPostSlug}/`
+    const arrowLeftLink = props.previousPostSlug?.[locale]?.length
+        ? `/${props.localeSlug}posts/${props.previousPostSlug[locale]}/`
         : null;
-    const arrowRightLink = props.nextPostSlug?.length ? `/${props.localeSlug}posts/${props.nextPostSlug}/` : null;
+    const arrowRightLink = props.nextPostSlug?.[locale]?.length
+        ? `/${props.localeSlug}posts/${props.nextPostSlug[locale]}/`
+        : null;
 
     return (
         <Fragment>
