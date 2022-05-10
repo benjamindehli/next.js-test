@@ -78,8 +78,21 @@ export async function getStaticPaths({ locales }) {
 
 export const getStaticProps = async (context) => {
     const client = await MongoClient.connect(dbConnectionString);
-    const post = await getOneInCollection(client, "posts", context.params.postSlug, context.locale);
-    const posts = await getAllInCollection(client, "posts");
+    const post = await getOneInCollection(client, "posts", context.params.postSlug, context.locale).then((post) => {
+        return {
+            ...post,
+            postImageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
+        };
+    });
+
+    const posts = await getAllInCollection(client, "posts").then((posts) => {
+        return posts.map((post) => {
+            return {
+                ...post,
+                postImageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
+            };
+        });
+    });
     client.close();
 
     const slugForNeighbourItems = getSlugForNeighbourItems(post, posts, context.locale);
