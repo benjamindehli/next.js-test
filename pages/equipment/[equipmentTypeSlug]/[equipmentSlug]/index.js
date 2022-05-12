@@ -11,9 +11,6 @@ import EquipmentItem from "components/partials/EquipmentItem";
 import EquipmentList from "components/partials/EquipmentList";
 import Modal from "components/template/Modal";
 
-// Amp Components
-//import AmpPostItem from "components/amp/AmpPostItem";
-
 // Helpers
 import { getOneInCollection, getAllInCollection } from "helpers/databaseHelpers";
 import { getLocaleSlug, getSlugForNeighbourItems } from "helpers/urlHelpers";
@@ -22,41 +19,24 @@ import { getLocaleSlug, getSlugForNeighbourItems } from "helpers/urlHelpers";
 //import getPostJsonLd from "json-ld/post";
 import Head from "next/head";
 
-
 const EquipmentTypeItem = (props) => {
-
     const router = useRouter();
     const { locale, query } = router;
 
     const handleClickOutside = () => {
         router.push(`/${props.localeSlug}equipment/${query.equipmentTypeSlug}/`);
     };
-    const arrowLeftLink = props.previousPostSlug?.length
-        ? `/${props.localeSlug}equipment/${query.equipmentTypeSlug}/${props.previousPostSlug}/`
+    const arrowLeftLink = props.previousEquipmentSlug?.length
+        ? `/${props.localeSlug}equipment/${query.equipmentTypeSlug}/${props.previousEquipmentSlug}/`
         : null;
-    const arrowRightLink = props.nextPostSlug?.length ? `/${props.localeSlug}equipment/${query.equipmentTypeSlug}/${props.nextPostSlug}/` : null;
+    const arrowRightLink = props.nextEquipmentSlug?.length
+        ? `/${props.localeSlug}equipment/${query.equipmentTypeSlug}/${props.nextEquipmentSlug}/`
+        : null;
 
     return (
         <Fragment>
             {/*<Head>{getPostJsonLd(props.post, locale)}</Head>*/}
-            {/*
-            {isAmp ? (
-                <AmpPostItem post={props.post} fullscreen />
-            ) : (
-                <Fragment>
-                    <Modal
-                        onClickOutside={handleClickOutside}
-                        maxWidth="540px"
-                        arrowLeftLink={arrowLeftLink}
-                        arrowRightLink={arrowRightLink}
-                        selectedLanguageKey={locale}
-                    >
-                        <PostItem post={props.post} fullscreen />
-                    </Modal>
-                    <PostList posts={props.posts} blur />
-                </Fragment>
-            )}
-            */}
+
             <Modal
                 onClickOutside={handleClickOutside}
                 maxWidth="945px"
@@ -64,7 +44,11 @@ const EquipmentTypeItem = (props) => {
                 arrowRightLink={arrowRightLink}
                 selectedLanguageKey={locale}
             >
-                <EquipmentItem equipmentItem={props.equipmentItem} equipmentTypeSlug={props.equipmentTypeSlug} fullscreen />
+                <EquipmentItem
+                    equipmentItem={props.equipmentItem}
+                    equipmentTypeSlug={props.equipmentTypeSlug}
+                    fullscreen
+                />
             </Modal>
             <EquipmentList equipment={props.equipmentItems} equipmentTypeSlug={props.equipmentTypeSlug} blur />
         </Fragment>
@@ -106,14 +90,26 @@ export async function getStaticPaths({ locales }) {
 
 export const getStaticProps = async (context) => {
     const client = await MongoClient.connect(dbConnectionString);
-    const equipmentItem = await getOneInCollection(
-        client,
-        context.params.equipmentTypeSlug,
-        context.params.equipmentSlug
-    );
     const equipmentTypeSlug = context.params.equipmentTypeSlug;
-    const equipmentItems = await getAllInCollection(client, context.params.equipmentTypeSlug);
+    const equipmentSlug = context.params.equipmentSlug;
+
+    const equipmentItem = await getOneInCollection(client, equipmentTypeSlug, equipmentSlug).then((equipmentItem) => {
+        return {
+            ...equipmentItem,
+            imageKitPath: `equipment/${context.params.equipmentTypeSlug}/${equipmentItem.thumbnailFilename}_945.jpg`
+        };
+    });
+    const equipmentItems = await getAllInCollection(client, equipmentTypeSlug).then((equipmentItems) => {
+        return equipmentItems.map((equipmentItem) => {
+            return {
+                ...equipmentItem,
+                imageKitPath: `equipment/${equipmentTypeSlug}/${equipmentItem.thumbnailFilename}_945.jpg`
+            };
+        });
+    });
     client.close();
+
+    console.log({ equipmentItems });
 
     const slugForNeighbourItems = getSlugForNeighbourItems(equipmentItem, equipmentItems);
     const localeSlug = getLocaleSlug(context.locale, context.defaultLocale);
@@ -123,8 +119,8 @@ export const getStaticProps = async (context) => {
             equipmentItems,
             equipmentItem,
             equipmentTypeSlug,
-            previousPostSlug: slugForNeighbourItems.previousItemSlug,
-            nextPostSlug: slugForNeighbourItems.nextItemSlug,
+            previousEquipmentSlug: slugForNeighbourItems.previousItemSlug,
+            nextEquipmentSlug: slugForNeighbourItems.nextItemSlug,
             localeSlug
         }
     };

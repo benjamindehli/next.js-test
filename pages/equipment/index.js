@@ -9,7 +9,6 @@ import { dbConnectionString } from "config";
 
 // Components
 import EquipmentTypeList from "components/partials/EquipmentTypeList";
-//import AmpPostList from "components/amp/AmpPostList";
 
 // Helpers
 import { getAllInCollection } from "helpers/databaseHelpers";
@@ -24,8 +23,7 @@ const EquipmentTypes = (props) => {
 
     return (
         <Fragment>
-           {/* <Head>{getPostsJsonLd(props.posts, locale)}</Head> /*}
-            {/*{isAmp ? <AmpPostList posts={props.posts} /> : <PostList posts={props.posts} />}*/}
+           {/* <Head>{getPostsJsonLd(props.posts, locale)}</Head> */}
             <EquipmentTypeList equipmentTypes={props.equipmentTypes} />
         </Fragment>
     );
@@ -35,7 +33,14 @@ export default EquipmentTypes;
 
 export const getStaticProps = async () => {
     const client = await MongoClient.connect(dbConnectionString);
-    const equipmentTypes = await getAllInCollection(client, "equipmentTypes");
+    const equipmentTypes = await getAllInCollection(client, "equipmentTypes").then((equipmentTypes) => {
+        return equipmentTypes.map((equipmentType) => {
+            return {
+                ...equipmentType,
+                imageKitPath: `equipment/${equipmentType.thumbnailFilename}_945.jpg`
+            };
+        });
+    });
     client.close();
     return {
         props: {

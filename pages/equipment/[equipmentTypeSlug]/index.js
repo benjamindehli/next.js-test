@@ -56,7 +56,14 @@ export async function getStaticPaths({ locales }) {
 export const getStaticProps = async (context) => {
     const equipmentTypeSlug = context.params.equipmentTypeSlug;
     const client = await MongoClient.connect(dbConnectionString);
-    const equipment = await getAllInCollection(client, equipmentTypeSlug);
+    const equipment = await getAllInCollection(client, equipmentTypeSlug).then((equipment) => {
+        return equipment.map((equipmentItem) => {
+            return {
+                ...equipmentItem,
+                imageKitPath: `equipment/${equipmentTypeSlug}/${equipmentItem.thumbnailFilename}_945.jpg`
+            };
+        });
+    });
     client.close();
     return {
         props: {
