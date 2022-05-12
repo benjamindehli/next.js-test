@@ -127,7 +127,7 @@ export const getStaticProps = async (context) => {
     const post = await getOneInCollection(client, "posts", context.params.postSlug, context.locale).then((post) => {
         return {
             ...post,
-            postImageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
+            imageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
         };
     });
 
@@ -135,7 +135,7 @@ export const getStaticProps = async (context) => {
         return posts.map((post) => {
             return {
                 ...post,
-                postImageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
+                imageKitPath: `posts/${post.thumbnailFilename}_540.jpg`
             };
         });
     });

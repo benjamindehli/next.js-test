@@ -1,7 +1,6 @@
 // Dependencies
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 // Components
 import ListItemThumbnail from "components/template/List/ListItem/ListItemThumbnail";
@@ -53,7 +52,7 @@ const PostItem = (props) => {
         const renderSize = !!props.fullscreen ? "540px" : "(max-width: 599px) 55px, 350px";
         return (
             <ListItemThumbnail fullscreen={props.fullscreen} link={link}>
-                {renderThumbnail(props.post.postImageKitPath, 'post', props.post.thumbnailDescription, renderSize)}
+                {renderThumbnail(props.post.imageKitPath, 'post', props.post.thumbnailDescription, renderSize)}
             </ListItemThumbnail>
         );
     };

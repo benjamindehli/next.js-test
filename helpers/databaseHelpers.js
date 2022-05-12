@@ -1,11 +1,11 @@
 export const getAllInCollection = async (client, collectionName, extraProps) => {
     const db = client.db();
-    const postsCollection = db.collection(collectionName);
-    const posts = await postsCollection.find().toArray();
-    return posts.map((post) => {
+    const itemsCollection = db.collection(collectionName);
+    const items = await itemsCollection.find().toArray();
+    return items.map((item) => {
         return {
-            ...post,
-            _id: post._id.toString(),
+            ...item,
+            _id: item._id.toString(),
             ...extraProps
         };
     });
@@ -13,13 +13,13 @@ export const getAllInCollection = async (client, collectionName, extraProps) => 
 
 export const getOneInCollection = async (client, collectionName, slug, locale) => {
     const db = client.db();
-    const postsCollection = db.collection(collectionName);
+    const itemsCollection = db.collection(collectionName);
     const slugKey = locale ? `slug.${locale}` : "slug";
-    const post = await postsCollection.findOne({ [slugKey]: slug });
-    return post
+    const item = await itemsCollection.findOne({ [slugKey]: slug });
+    return item
         ? {
-              ...post,
-              _id: post._id.toString()
+              ...item,
+              _id: item._id.toString()
           }
         : null;
 };
@@ -30,7 +30,7 @@ export const replaceOneInCollection = async (client, collectionName, objectId, d
         _id: objectId
     };
     const db = client.db();
-    const postsCollection = db.collection(collectionName);
-    const result = await postsCollection.replaceOne({ _id: data._id }, data);
+    const itemsCollection = db.collection(collectionName);
+    const result = await itemsCollection.replaceOne({ _id: data._id }, data);
     return result;
 };
