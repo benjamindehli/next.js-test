@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="36" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="36">
+ <path d="m40 20c0-4.627-1.604-9.111-4.54-12.688-2.935-3.5767-7.02-6.025-11.558-6.9277-4.538-0.90267-9.249-0.20385-13.33 1.9774-4.0808 2.1812-7.279 5.7099-9.0496 9.9843-1.7707 4.275-2.0044 9.032-0.66116 13.46s4.1802 8.253 8.0275 10.823c3.8473 2.571 8.4673 3.728 13.071 3.275 4.605-0.454 8.91-2.49 12.182-5.762 1.857-1.857 3.331-4.062 4.336-6.488 1.005-2.427 1.522-5.028 1.522-7.654z" fill="#F3F2FA"/>
+ <path fill="url(#paint0_linear_google-store-icon-circle-f924lt23l9p)" d="m0.40153 0c-0.30115 0.30115-0.40153 0.80306-0.40153 1.4054v22.185c0 0.602 0.20076 1.104 0.50191 1.405l0.10039 0.101 12.448-12.448v-0.201l-12.648-12.447z" transform="translate(11 7.3545)"/>
+ <path fill="url(#paint1_linear_google-store-icon-circle-f924lt23l9p)" d="m4.1157 8.5325l-4.1157-4.1157v-0.3011l4.1157-4.1157 0.1004 0.10038 4.9187 2.8107c1.4052 0.8031 1.4052 2.108 0 2.9111l-5.0191 2.7103z" transform="translate(23.949 15.686)"/>
+ <path fill="url(#paint2_linear_google-store-icon-circle-f924lt23l9p)" d="m16.764 4.2161l-4.216-4.2161-12.548 12.548c0.50191 0.502 1.2046 0.502 2.108 0.1l14.656-8.4319z" transform="translate(11.402 19.902)"/>
+ <path fill="url(#paint3_linear_google-store-icon-circle-f924lt23l9p)" d="m16.764 8.6617l-14.656-8.3317c-0.9034-0.50193-1.6061-0.40155-2.108 0.10036l12.548 12.448 4.216-4.2163z" transform="translate(11.402 7.0239)"/>
+ <path opacity=".2" d="m16.664 3.8293e-7l-14.556 8.2314c-0.803 0.5019-1.5057 0.4015-2.0076 0l-0.1004 0.1003 0.10038 0.1004c0.50191 0.4015 1.2046 0.5019 2.0076 0l14.556-8.4321z" transform="translate(11.402 24.018)"/>
+ <path opacity=".2" d="m0.40153 12.347c-0.30115-0.301-0.40153-0.803-0.40153-1.405v0.1c0 0.602 0.20076 1.104 0.50191 1.405v-0.1h-0.10038zm21.682-11.042l-5.019 2.8107 0.1 0.1004 4.919-2.8107c0.703-0.4016 1.004-0.90349 1.004-1.4054 0 0.50191-0.402 0.90344-1.004 1.305z" transform="translate(11 19.902)"/>
+ <path opacity=".2" fill="#fff" d="m2.5096 0.45454l19.574 11.142c0.602 0.401 1.004 0.803 1.004 1.305 0-0.502-0.301-1.004-1.004-1.405l-19.574-11.143c-1.4058-0.8029-2.51-0.20061-2.51 1.4055v0.1004c0-1.5057 1.1042-2.2084 2.5096-1.4054z" transform="translate(11 7)"/>
+ <defs>
+  <linearGradient id="paint0_linear_google-store-icon-circle-f924lt23l9p" gradientUnits="userSpaceOnUse" gradientTransform="translate(3.422 -7.209) scale(-23.825 23.825) rotate(44.998)">
+   <stop stop-color="#00A0FF" offset="0"/>
+   <stop stop-color="#00A1FF" offset=".007"/>
+   <stop stop-color="#00BEFF" offset=".26"/>
+   <stop stop-color="#00D2FF" offset=".512"/>
+   <stop stop-color="#00DFFF" offset=".76"/>
+   <stop stop-color="#00E3FF" offset="1"/>
+  </linearGradient>
+  <linearGradient id="paint1_linear_google-store-icon-circle-f924lt23l9p" gradientUnits="userSpaceOnUse" gradientTransform="translate(10.976 -7.9277) scale(-24.29 24.29)">
+   <stop stop-color="#FFE000" offset="0"/>
+   <stop stop-color="#FFBD00" offset=".409"/>
+   <stop stop-color="#FFA500" offset=".775"/>
+   <stop stop-color="#FF9C00" offset="1"/>
+  </linearGradient>
+  <linearGradient id="paint2_linear_google-store-icon-circle-f924lt23l9p" gradientUnits="userSpaceOnUse" gradientTransform="translate(3.0596 -9.1177) scale(-32.308 32.308) rotate(45)">
+   <stop stop-color="#FF3A44" offset="0"/>
+   <stop stop-color="#C31162" offset="1"/>
+  </linearGradient>
+  <linearGradient id="paint3_linear_google-store-icon-circle-f924lt23l9p" gradientUnits="userSpaceOnUse" gradientTransform="translate(-8.2158 -1.9211) scale(14.428 -14.428) rotate(-45)">
+   <stop stop-color="#32A071" offset="0"/>
+   <stop stop-color="#2DA771" offset=".069"/>
+   <stop stop-color="#15CF74" offset=".476"/>
+   <stop stop-color="#06E775" offset=".801"/>
+   <stop stop-color="#00F076" offset="1"/>
+  </linearGradient>
+ </defs>
+</svg>
