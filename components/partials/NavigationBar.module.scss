@@ -26,6 +26,9 @@
     &:active {
       background-color: rgba(0, 0, 0, 0.16);
     }
+    > span {
+      display: block!important;
+    }
   }
   &:focus {
     .menuIcon {

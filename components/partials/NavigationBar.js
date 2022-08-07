@@ -17,7 +17,7 @@ import style from "components/partials/NavigationBar.module.scss";
 
 const NavigationBar = () => {
     const router = useRouter();
-    const { locales, locale, pathname } = router;
+    const { locales, locale, pathname, asPath } = router;
 
     // State
     const [showSidebar, setShowSidebar] = useState();
@@ -101,7 +101,7 @@ const NavigationBar = () => {
             const isActive = availableLocale === locale;
             return (
                 <li key={availableLocale}>
-                    <Link href={pathname} locale={availableLocale}>
+                    <Link href={asPath} locale={availableLocale}>
                         <a title={availableLocaleName} className={isActive ? style.activeLink : ""}>
                             {availableLocaleName}
                         </a>
