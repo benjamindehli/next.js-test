@@ -93,6 +93,88 @@ const imageConfigs = {
             height: 260,
             maintainRatio: true
         }
+    },
+    equipmentType: {
+        formats: [
+            {
+                formatKey: "avif",
+                mimeType: "image/avif"
+            },
+            {
+                formatKey: "jpg",
+                mimeType: "image/jpg"
+            },
+            {
+                formatKey: "webp",
+                mimeType: "image/webp"
+            }
+        ],
+        sizes: [
+            {
+                width: 55,
+                height: 55
+            },
+            {
+                width: 350,
+                height: 260,
+                maintainRatio: true
+            }
+        ],
+        defaultFormat: {
+            formatKey: "jpg",
+            mimeType: "image/jpg"
+        },
+        defaultSize: {
+            width: 350,
+            height: 260,
+            maintainRatio: true
+        }
+    },
+    equipment: {
+        formats: [
+            {
+                formatKey: "avif",
+                mimeType: "image/avif"
+            },
+            {
+                formatKey: "jpg",
+                mimeType: "image/jpg"
+            },
+            {
+                formatKey: "webp",
+                mimeType: "image/webp"
+            }
+        ],
+        sizes: [
+            {
+                width: 55,
+                height: 55
+            },
+            {
+                width: 350,
+                height: 260,
+                maintainRatio: true
+            },
+            {
+                width: 540,
+                height: 400,
+                maintainRatio: true
+            },
+            {
+                width: 945,
+                height: 700,
+                maintainRatio: true
+            }
+        ],
+        defaultFormat: {
+            formatKey: "jpg",
+            mimeType: "image/jpg"
+        },
+        defaultSize: {
+            width: 350,
+            height: 260,
+            maintainRatio: true
+        }
     }
 };
 
